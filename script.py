@@ -94,6 +94,8 @@ while True:
 
                         # send the text
                         text_peter(f'{course_name} is open!', f'Course {subject} {course_number} is open! It meets {days_of_week} from {start} to {end} and is taught by {prof}.')
+                else:
+                    print(f'{crn} is closed.')
             time.sleep(0.2)
 
     
