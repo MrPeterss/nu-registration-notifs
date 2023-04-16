@@ -52,7 +52,7 @@ while True:
                 soup = BeautifulSoup(r.text, 'html.parser')
                 seats_available = soup.find_all('span')[5].text
                 if int(seats_available) > 0:
-                    r = requests.get(f'https://nubanner.neu.edu/StudentRegistrationSsb/ssb/searchResults/getFacultyMeetingTimes?term={terms}&courseReferenceNumber={crn}', verify=False)
+                    r = requests.get(f'https://nubanner.neu.edu/StudentRegistrationSsb/ssb/searchResults/getFacultyMeetingTimes?term={202410}&courseReferenceNumber={11817}', verify=False)
                     if r.status_code == 200:
                         # parse the json
                         json_data = json.loads(r.text)
@@ -67,10 +67,8 @@ while True:
                         friday = meeting_time.get('friday')
                         saturday = meeting_time.get('saturday')
                         sunday = meeting_time.get('sunday')
-                        # get prof
-                        prof = json_data.get('fmt')[0].get('faculty')[0].get('displayName')
-
-                        r = requests.get(f'https://nubanner.neu.edu/StudentRegistrationSsb/ssb/searchResults/getClassDetails?term={terms}&courseReferenceNumber={crn}', verify=False)
+                    
+                        r = requests.get(f'https://nubanner.neu.edu/StudentRegistrationSsb/ssb/searchResults/getClassDetails?term={202410}&courseReferenceNumber={11817}', verify=False)
                         soup = BeautifulSoup(r.text, 'html.parser')
                         course_name = soup.find("span", { "id" : "courseTitle" }).text
                         course_number = soup.find("span", { "id" : "courseNumber" }).text
@@ -91,9 +89,8 @@ while True:
                             days_of_week += 'Saturday, '
                         if sunday:
                             days_of_week += 'Sunday, '
-
                         # send the text
-                        text_peter(f'{course_name} is open!', f'Course {subject} {course_number} is open! It meets {days_of_week} from {start} to {end} and is taught by {prof}.')
+                        text_peter(f'{course_name} is open!', f'Course {subject} {course_number} is open! It meets {days_of_week} from {start} to {end}.')
                 else:
                     print(f'{crn} is closed.')
             time.sleep(0.2)
