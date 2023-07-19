@@ -1,3 +1,6 @@
 # Northeastern Registration Notifications
  
-This repository utilizes Northeastern Banner GET requests to check the status of a class. This works by getting the term ID as well as the class CRN for the course that you want tracked. This program will send a text message to a number whenever a class that is full becomes available.
+A simple python app (writen in Juypiter Notebooks) that will send notifications when a seat opens in a class.
+
+## How it works
+Uses unprotected GET HTTP requests from Northeastern University Registration to pull class information about the amount of seats available in a class given its Class Reference Number (CRN). This app will send a text message when the class has a new seat.
